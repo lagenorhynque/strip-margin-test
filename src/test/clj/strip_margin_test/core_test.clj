@@ -54,28 +54,19 @@
 (deftest strip-margin'-test
   (testing "strip-margin'"
     (is (= "(defn factorial [n]
-                            (if (zero? n)
-                              1
-                              (* n (factorial (dec n)))))"
+                             (if (zero? n)
+                               1
+                               (* n (factorial (dec n)))))"
            (strip-margin' "(defn factorial [n]
-                            (if (zero? n)
-                              1
-                              (* n (factorial (dec n)))))")))
+                             (if (zero? n)
+                               1
+                               (* n (factorial (dec n)))))")))
 
     (is (= "(defn factorial [n]
   (if (zero? n)
     1
     (* n (factorial (dec n)))))"
            (strip-margin' "(defn factorial [n]
-                         |  (if (zero? n)
-                         |    1
-                         |    (* n (factorial (dec n)))))")))
-
-    (is (= "(defn factorial [n]
-  (if (zero? n)
-    1
-    (* n (factorial (dec n)))))"
-           (strip-margin' "|(defn factorial [n]
                           |  (if (zero? n)
                           |    1
                           |    (* n (factorial (dec n)))))")))
@@ -84,8 +75,17 @@
   (if (zero? n)
     1
     (* n (factorial (dec n)))))"
+           (strip-margin' "|(defn factorial [n]
+                           |  (if (zero? n)
+                           |    1
+                           |    (* n (factorial (dec n)))))")))
+
+    (is (= "(defn factorial [n]
+  (if (zero? n)
+    1
+    (* n (factorial (dec n)))))"
            (strip-margin' "(defn factorial [n]
-                         ;  (if (zero? n)
-                         ;    1
-                         ;    (* n (factorial (dec n)))))"
-                         \;)))))
+                          ;  (if (zero? n)
+                          ;    1
+                          ;    (* n (factorial (dec n)))))"
+                          \;)))))
